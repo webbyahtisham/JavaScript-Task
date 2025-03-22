@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centered To-Do List</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #181818;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            width: 70%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        .add-btn {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .add-btn:hover {
+            background-color: #45a049;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+
+        li {
+            margin: 10px 0;
+            padding: 10px;
+            background: #f0f0f0;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .remove-btn {
+            padding: 5px 10px;
+            background-color: #FF6347;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .remove-btn:hover {
+            background-color: #e5533d;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Dynamic To-Do List</h2>
+        <input type="text" id="itemInput" placeholder="Enter list item">
+        <button class="add-btn" onclick="addItem()">Add Item</button>
+
+        <ul id="dynamicList">
+
+        </ul>
+    </div>
+
+    <script>
+        function addItem() {
+            let input = document.getElementById('itemInput')
+            let inputValue = input.value.trim()
+            if(inputValue !== ''){
+                let ul = document.getElementById('dynamicList');
+                let listItem = document.createElement('li');
+                listItem.innerHTML = `${inputValue}  <button class='remove-btn' onclick="remove(this)">Remove</button> `
+                ul.appendChild(listItem)
+                input.value = ''
+            }
+            else{
+                alert("please Enter Something")
+            }
+        }
+        function remove(button){
+            button.parentElement.remove()
+        }
+
+    </script>
+</body>
+
+</html>
